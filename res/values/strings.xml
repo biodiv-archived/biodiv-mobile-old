@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, BioDiversityActivity!</string>
+    <string name="app_name">BioDiversity</string>
+    <string name="password">Password</string>
+    <string name="login">Email</string>
+    <string name="login_button">Login</string>
+    <string name="observation_name">Observation Name</string>
+    <string name="observation_date">Observed on</string>
+    <string name="observation_submit">Submit</string>
+    <string name="observation_group">Group</string>
+    <string name="observation_habitat">Habitat</string>
+
+</resources>
