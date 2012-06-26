@@ -6,10 +6,13 @@
     <string name="password">Password</string>
     <string name="login">Email</string>
     <string name="login_button">Login</string>
-    <string name="observation_name">Observation Name</string>
+    <string name="species_name">Species Name</string>
     <string name="observation_date">Observed on</string>
     <string name="observation_submit">Submit</string>
     <string name="observation_group">Group</string>
     <string name="observation_habitat">Habitat</string>
+    <string name="common_name">Common Name</string>
+    <string name="observation_notes">Notes</string>
+    <string name="language">Language</string>
 
 </resources>

@@ -1,8 +1,8 @@
 package com.va.strand.biodiversity;
 
 import java.io.File;
-
-import com.va.strand.biodiversity.model.ObservationList;
+import java.util.HashMap;
+import java.util.Map;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
@@ -15,41 +15,46 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class BrowseObservationListAdapter extends BaseAdapter {
+import com.va.strand.biodiversity.model.GroupModel;
+import com.va.strand.biodiversity.model.HabitatModel;
+import com.va.strand.biodiversity.model.ObservationList;
 
-	private String[] names;
+public class BrowseObservationListAdapter extends BaseAdapter implements ObservationListListener {
+
+	private static final String TAG = "BioDiversity";
 	private Activity context;
 	private ObservationList observationList;
+	private HabitatModel habitatModel;
+	private GroupModel groupModel;
+	private Map<Long, Bitmap> bitmapCache;
 
 	static class ViewHolder {
 		public TextView name;
 		public ImageView image;
+		public TextView habitat;
+		public TextView group;
 	}
 
 	public BrowseObservationListAdapter(Activity context, ObservationList observationList) {
 		this.context = context;
 		this.observationList = observationList;
-		names = new String[] { "Android", "Hello", "World", "Varun", "Android",
-				"Hello", "World", "Varun", "Android", "Hello", "World",
-				"Varun", "Android", "Hello", "World", "Varun", "Android",
-				"Hello", "World", "Varun", "Agrawal", "Testing" };
-		// ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-		// R.layout.browse_item, R.id.item_name, names);
+		this.habitatModel = new HabitatModel(context);
+		this.groupModel = new GroupModel(context);
 	}
 
 	@Override
 	public int getCount() {
-		return names.length;
+		return observationList.size();
 	}
 
 	@Override
 	public Object getItem(int position) {
-		return names[position];
+		return observationList.getId(position);
 	}
 
 	@Override
 	public long getItemId(int position) {
-		return position;
+		return observationList.getId(position);
 	}
 
 	@Override
@@ -61,14 +66,26 @@ public class BrowseObservationListAdapter extends BaseAdapter {
 			ViewHolder viewHolder = new ViewHolder();
 			viewHolder.name = (TextView) rowView.findViewById(R.id.item_name);
 			viewHolder.image = (ImageView) rowView.findViewById(R.id.item_pic);
+			viewHolder.habitat = (TextView) rowView.findViewById(R.id.item_habitat);
+			viewHolder.group = (TextView) rowView.findViewById(R.id.item_group);
 			rowView.setTag(viewHolder);
 		}
 		
 		ViewHolder holder = (ViewHolder) rowView.getTag();
-		String s = names[position];
-		Bitmap bitmap = getBitmap(1234);
+		String habitat = habitatModel.getHabitat(observationList.getData(position).habitat_id + "");
+		String group = groupModel.getGroup(observationList.getData(position).group_id + "");
+		String name = observationList.getData(position).name;
+		if (bitmapCache == null) {
+			bitmapCache = new HashMap<Long, Bitmap>();
+		}
+		if (!bitmapCache.containsKey(getItemId(position))) {
+			bitmapCache.put(getItemId(position), getBitmap(1234));
+		}
+		Bitmap bitmap = bitmapCache.get(getItemId(position));
 		
-		holder.name.setText(s);
+		holder.name.setText(name);
+		holder.habitat.setText(habitat);
+		holder.group.setText(group);
 		if (bitmap != null) {
 			holder.image.setImageBitmap(bitmap);
 		}
@@ -88,6 +105,11 @@ public class BrowseObservationListAdapter extends BaseAdapter {
 			return bitmap;
 		}
 		return null;
+	}
+
+	@Override
+	public void listUpdated() {
+		notifyDataSetChanged();
 	}
 
 }

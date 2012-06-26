@@ -1,67 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/create_activity_scroll_view"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="vertical" >
-
-    <ImageButton
-        android:id="@+id/observation_click_photo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:contentDescription="Take Photo"
-        android:src="@drawable/camera" />
-
-    <Gallery
-        android:id="@+id/observation_photo"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:spacing="10dp"
-        android:contentDescription="Observations" />
+    android:layout_height="fill_parent" >
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
 
-        <Button
-            android:id="@+id/habitat_button"
+        <TextView
+            android:id="@+id/error_text"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="#ff0000" />
+
+        <ImageButton
+            android:id="@+id/observation_click_photo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:contentDescription="Take Photo"
+            android:src="@drawable/camera" />
+
+        <Gallery
+            android:id="@+id/observation_photo"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:contentDescription="Observations"
+            android:spacing="10dp" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/habitat_button"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:text="@string/observation_habitat" />
+
+            <Button
+                android:id="@+id/group_button"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:text="@string/observation_group" />
+        </LinearLayout>
+
+        <AutoCompleteTextView
+            android:id="@+id/species_name"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:text="@string/observation_habitat" />
+            android:hint="@string/species_name" />
 
-        <Button
-            android:id="@+id/group_button"
+        <AutoCompleteTextView
+            android:id="@+id/common_name"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:text="@string/observation_group" />
+            android:hint="@string/common_name" />
+
+        <AutoCompleteTextView
+            android:id="@+id/language"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:hint="@string/language" />
+
+        <EditText
+            android:id="@+id/observation_date"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:editable="false"
+            android:hint="@string/observation_date" />
+
+        <EditText
+            android:id="@+id/observation_notes"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:hint="@string/observation_notes"
+            android:lines="3" />
+
+        <Button
+            android:id="@+id/observation_submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
+            android:text="@string/observation_submit" />
     </LinearLayout>
 
-    <EditText
-        android:id="@+id/observation_name"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:hint="@string/observation_name" />
-
-    <EditText
-        android:id="@+id/observation_date"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:editable="false"
-        android:hint="@string/observation_date" />
-
-    <Button
-        android:id="@+id/observation_submit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="5dp"
-        android:text="@string/observation_submit" />
-
-</LinearLayout>
+</ScrollView>

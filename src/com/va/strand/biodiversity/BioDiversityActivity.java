@@ -11,6 +11,7 @@ import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.params.HttpClientParams;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 
@@ -20,6 +21,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -29,7 +31,13 @@ import com.va.strand.biodiversity.net.ConnectionManager;
 
 public class BioDiversityActivity extends Activity {
 
-	private static final String LOGIN_URL = "http://thewesternghats.in/biodiv/j_spring_security_check";
+	private static final String TAG = "BioDiversity";
+	// public static final String HOST = "thewesternghats.in";
+	public static final String HOST = "wgp.saturn.strandls.com";
+	private static final String LOGIN_URL = "http://" + HOST
+			+ "/biodiv/j_spring_security_check";
+	public static final String GROUPS_FILE = "biodiv.groups";
+	public static final String HABITATS_FILE = "biodiv.habitats";
 	private EditText login;
 	private EditText password;
 	private Button loginButton;
@@ -93,6 +101,7 @@ public class BioDiversityActivity extends Activity {
 		protected void onPreExecute() {
 			progressDialog = new ProgressDialog(BioDiversityActivity.this);
 			progressDialog.setMessage("Logging you in ...");
+			progressDialog.setCancelable(false);
 			progressDialog.show();
 		}
 
@@ -102,6 +111,7 @@ public class BioDiversityActivity extends Activity {
 				DefaultHttpClient client = ConnectionManager.getInstance()
 						.getHttpClient();
 				HttpPost request = new HttpPost(LOGIN_URL);
+				HttpClientParams.setRedirecting(client.getParams(), false);
 				String username = parameters[0];
 				String password = parameters[1];
 
@@ -113,19 +123,17 @@ public class BioDiversityActivity extends Activity {
 				// Process the request of logging in
 				HttpResponse response = client.execute(request);
 				Header[] cookieHeaders = response.getHeaders("Set-Cookie");
+				Log.d(TAG, "checking login");
 				for (Header h : cookieHeaders) {
-					if (h.getName().equals("login") && h.getValue().equals("true")) {
+					if (h.getValue().contains("login=true")) {
 						return true;
 					}
 				}
 			} catch (UnsupportedEncodingException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (ClientProtocolException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 

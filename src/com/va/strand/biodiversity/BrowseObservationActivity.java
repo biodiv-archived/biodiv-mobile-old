@@ -4,11 +4,11 @@ import android.app.ListActivity;
 import android.os.Bundle;
 import android.widget.BaseAdapter;
 
-import com.va.strand.biodiversity.model.ObservationFactory;
+import com.va.strand.biodiversity.model.ObservationManager;
 import com.va.strand.biodiversity.model.ObservationList;
 
 public class BrowseObservationActivity extends ListActivity {
-	private static final int COUNT = 10;
+	private static final int COUNT = 9;
 	
 	private int offset = 0;
 	
@@ -18,9 +18,10 @@ public class BrowseObservationActivity extends ListActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.browse_activity);
         
-        ObservationList observationList = ObservationFactory.getInstance().getObservationList(offset, COUNT);
+        ObservationList observationList = ObservationManager.getInstance().getObservationList(this, offset, COUNT);
         
-        BaseAdapter adapter = new BrowseObservationListAdapter(this, observationList);
+        BrowseObservationListAdapter adapter = new BrowseObservationListAdapter(this, observationList);
+        observationList.addListener(adapter);
         
         setListAdapter(adapter);
     }
