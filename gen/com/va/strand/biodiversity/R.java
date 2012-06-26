@@ -29,15 +29,16 @@ public final class R {
         public static final int item_pic=0x7f050001;
         public static final int language=0x7f05000c;
         public static final int login=0x7f050011;
-        public static final int login_button=0x7f050013;
+        public static final int login_button=0x7f050014;
         public static final int login_message=0x7f050010;
         public static final int observation_click_photo=0x7f050006;
         public static final int observation_date=0x7f05000d;
         public static final int observation_notes=0x7f05000e;
         public static final int observation_photo=0x7f050007;
-        public static final int observation_photo_item=0x7f050014;
+        public static final int observation_photo_item=0x7f050015;
         public static final int observation_submit=0x7f05000f;
         public static final int password=0x7f050012;
+        public static final int saveLogin=0x7f050013;
         public static final int species_name=0x7f05000a;
     }
     public static final class layout {
@@ -45,9 +46,10 @@ public final class R {
         public static final int browse_item=0x7f030001;
         public static final int create_activity=0x7f030002;
         public static final int list_species_suggestion=0x7f030003;
-        public static final int main_activity=0x7f030004;
-        public static final int observation_activity=0x7f030005;
-        public static final int observation_photo_item=0x7f030006;
+        public static final int login_activity=0x7f030004;
+        public static final int main_activity=0x7f030005;
+        public static final int observation_activity=0x7f030006;
+        public static final int observation_photo_item=0x7f030007;
     }
     public static final class string {
         public static final int app_name=0x7f040001;
@@ -62,6 +64,7 @@ public final class R {
         public static final int observation_notes=0x7f04000b;
         public static final int observation_submit=0x7f040007;
         public static final int password=0x7f040002;
+        public static final int saveLogin=0x7f04000d;
         public static final int species_name=0x7f040005;
     }
 }

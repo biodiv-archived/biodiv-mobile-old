@@ -14,5 +14,6 @@
     <string name="common_name">Common Name</string>
     <string name="observation_notes">Notes</string>
     <string name="language">Language</string>
+    <string name="saveLogin">Save password</string>
 
 </resources>

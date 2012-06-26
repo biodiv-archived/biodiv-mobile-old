@@ -32,7 +32,6 @@ public class ConnectionManager {
 	}
 
 	private DefaultHttpClient httpClient;
-	private boolean loginState = false;
 	
 	public ConnectionManager() {
 		httpClient = new DefaultHttpClient();
@@ -40,14 +39,6 @@ public class ConnectionManager {
 	
 	public DefaultHttpClient getHttpClient() {
 		return httpClient;
-	}
-	
-	public void setLoginState(boolean loginState) {
-		this.loginState = loginState;
-	}
-	
-	public boolean getLoginState() {
-		return loginState;
 	}
 	
 	public synchronized String getJSON(String urlAddress, LinkedHashMap<String, String> parameters) {
