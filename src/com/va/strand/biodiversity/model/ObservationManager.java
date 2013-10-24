@@ -41,12 +41,12 @@ import com.va.strand.biodiversity.net.ConnectionManager;
 
 public class ObservationManager {
 
-	private static final String FETCH_OBS_LIST_URL = "http://" + BioDiversityActivity.HOST + "/biodiv/observation/getList";
+	private static final String FETCH_OBS_LIST_URL = "http://" + BioDiversityActivity.HOST + "/observation/getList";
 	private static final String UPLOAD_OBS_URL = "http://"
-			+ BioDiversityActivity.HOST + "/biodiv/observation/save";
+			+ BioDiversityActivity.HOST + "/observation/save";
 	private static final String TAG = "BioDiversity";
 	protected static final String UPLOAD_RESOURCE_URL = "http://"
-			+ BioDiversityActivity.HOST + "/biodiv/observation/upload_resource";
+			+ BioDiversityActivity.HOST + "/observation/upload_resource";
 	private static ObservationManager instance;
 
 	/**
@@ -271,7 +271,7 @@ public class ObservationManager {
 					int id = observationJSON.getInt("id");
 					int habitat_id = habitatJSON.getInt("id");
 					int group_id = groupJSON.getInt("id");
-					String name = observationJSON.getString("maxVotedSpeciesName");
+					String name = observationJSON.getString("maxVotedReco");
 					int resource_id = resourcesJSON.getJSONObject(0).getInt("id");
 					observationList.addObservation(id, habitat_id, group_id, name, resource_id);
 				}
@@ -294,7 +294,7 @@ public class ObservationManager {
 			// TODO temporary code
 			try {
 				DefaultHttpClient client = ConnectionManager.getInstance().getHttpClient();
-				HttpGet request = new HttpGet("http://wgp.saturn.strandls.com/observation/getFullObvImage?id=316098");
+				HttpGet request = new HttpGet("http://indiabiodiversity.org/observation/getFullObvImage?id=316098");
 				HttpResponse res;
 				res = client.execute(request);
 				InputStream is = res.getEntity().getContent();

@@ -108,6 +108,7 @@ public class ConnectionManager {
 			HttpResponse httpResponse = httpClient.execute(httpPost);
 			HttpEntity entity = httpResponse.getEntity();
 			is = entity.getContent();
+			entity.consumeContent();
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 			return null;

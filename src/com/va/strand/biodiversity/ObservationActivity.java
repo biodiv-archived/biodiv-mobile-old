@@ -16,6 +16,7 @@ import android.content.SharedPreferences.Editor;
 import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TabHost;
 
 import com.va.strand.biodiversity.net.ConnectionManager;
@@ -23,9 +24,9 @@ import com.va.strand.biodiversity.net.ConnectionManager;
 public class ObservationActivity extends TabActivity {
 
 	private static final String GET_HABITAT_ADDRESS = "http://"
-			+ BioDiversityActivity.HOST + "/biodiv/observation/getHabitatList";
+			+ BioDiversityActivity.HOST + "/observation/getHabitatList";
 	private static final String GET_GROUP_ADDRESS = "http://"
-			+ BioDiversityActivity.HOST + "/biodiv/observation/getGroupList";
+			+ BioDiversityActivity.HOST + "/observation/getGroupList";
 	protected static final String TAG = "BioDiversity";
 
 	/** Called when the activity is first created. */
@@ -93,6 +94,8 @@ public class ObservationActivity extends TabActivity {
 				Map<String, String> habitats = new HashMap<String, String>();
 				Map<String, String> groups = new HashMap<String, String>();
 				try {
+					Log.d(TAG, "habitats: "+habitatsJSON);
+					Log.d(TAG, ""+groupsJSON);
 					JSONObject habitatsJSONObject = (JSONObject) new JSONTokener(
 							habitatsJSON).nextValue();
 					JSONObject groupsJSONObject = (JSONObject) new JSONTokener(

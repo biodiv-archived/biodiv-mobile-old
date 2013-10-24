@@ -20,7 +20,7 @@ import com.va.strand.biodiversity.net.ConnectionManager;
 public class SuggestionAdapter extends ArrayAdapter<Spanned> {
 
 	private static final String SUGGESTION_URL = "http://"
-			+ BioDiversityActivity.HOST + "/biodiv/recommendation/suggest";
+			+ BioDiversityActivity.HOST + "/recommendation/suggest";
 	protected static final String TAG = "BioDiversity";
 	private List<Spanned> suggestions;
 	private String nameFilter;

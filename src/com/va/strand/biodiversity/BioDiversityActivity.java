@@ -7,8 +7,8 @@ import android.os.Bundle;
 
 public class BioDiversityActivity extends Activity implements ILoginPage {
 
-	// public static final String HOST = "thewesternghats.in";
-	public static final String HOST = "wgp.saturn.strandls.com";
+	//public static final String HOST = "thewesternghats.in";
+	public static final String HOST = "indiabiodiversity.org";
 	public static final String GROUPS_FILE = "biodiv.groups";
 	public static final String HABITATS_FILE = "biodiv.habitats";
 	public static final String LOGIN_FILE = "biodiv.login";

@@ -14,6 +14,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.params.HttpClientParams;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -57,10 +58,14 @@ public class LoginAsyncTask extends AsyncTask<String, Void, Boolean> {
 			List<NameValuePair> params = new ArrayList<NameValuePair>();
 			params.add(new BasicNameValuePair("j_username", login));
 			params.add(new BasicNameValuePair("j_password", password));
-			request.setEntity(new UrlEncodedFormEntity(params));
+			UrlEncodedFormEntity urlEncodedFormEntity = new UrlEncodedFormEntity(params);
+			request.setEntity(urlEncodedFormEntity);
 
+			Log.d(TAG, "logging in at "+LOGIN_URL);
 			// Process the request of logging in
+			//urlEncodedFormEntity.consumeContent();
 			HttpResponse response = client.execute(request);
+			
 			Header[] cookieHeaders = response.getHeaders("Set-Cookie");
 			Log.d(TAG, "checking login");
 			for (Header h : cookieHeaders) {
@@ -68,6 +73,9 @@ public class LoginAsyncTask extends AsyncTask<String, Void, Boolean> {
 					return true;
 				}
 			}
+			Log.d(TAG, "consuming content");
+			response.getEntity().consumeContent();
+			
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		} catch (ClientProtocolException e) {
